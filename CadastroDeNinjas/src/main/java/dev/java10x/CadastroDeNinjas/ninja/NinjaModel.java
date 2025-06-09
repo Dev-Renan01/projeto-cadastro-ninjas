@@ -1,18 +1,24 @@
-package dev.java10x.CadastroDeNinjas.model;
+package dev.java10x.CadastroDeNinjas.ninja;
 
+import dev.java10x.CadastroDeNinjas.missoes.MissoesModel;
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "tb_cadastro ")
 public class NinjaModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
     private String email;
     private int idade;
 
+    private MissoesModel missoesModel;
+
+    
     public NinjaModel(){}
 
     public NinjaModel(String nome, String email, int idade) {
