@@ -16,9 +16,12 @@ public class NinjaModel {
     private String email;
     private int idade;
 
+    //ManyToOne - um Ninja tem uma unica missão
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // chave estrangeira
     private MissoesModel missoesModel;
 
-    
+
     public NinjaModel(){}
 
     public NinjaModel(String nome, String email, int idade) {
@@ -57,5 +60,16 @@ public class NinjaModel {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    @Override
+    public String toString() {
+        return "NinjaModel{ " +
+                "id = " + id +
+                ", nome = '" + nome +
+                ", email = '" + email +
+                ", idade = " + idade +
+                ", missoesModel = " + missoesModel +
+                " }";
     }
 }
