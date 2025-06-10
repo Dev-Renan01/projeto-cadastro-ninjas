@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "tb_cadastro ")
+@Table(name = "tb_cadastro")
 public class NinjaModel {
 
     @Id
