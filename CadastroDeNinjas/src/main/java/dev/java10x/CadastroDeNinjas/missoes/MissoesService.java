@@ -19,7 +19,7 @@ public class MissoesService {
     }
 
     //CRIAR
-    public MissoesModel criar(MissoesModel missoesModel) {
+    public MissoesModel save(MissoesModel missoesModel) {
         return missoesRepository.save(missoesModel);
     }
 
