@@ -21,7 +21,6 @@ public class NinjaModel {
     @JoinColumn(name = "missoes_id") // chave estrangeira
     private MissoesModel missoesModel;
 
-
     public NinjaModel(){}
 
     public NinjaModel(String nome, String email, int idade) {

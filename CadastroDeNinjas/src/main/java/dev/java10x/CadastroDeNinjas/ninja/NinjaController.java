@@ -1,12 +1,11 @@
 package dev.java10x.CadastroDeNinjas.ninja;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
     @RestController
-    @RequestMapping("/ninjas")
+    @RequestMapping("/ninja")
     public class NinjaController {
 
         private final NinjaService ninjaService;
@@ -29,13 +28,13 @@ import java.util.List;
         }
 
         //POST
-        @PostMapping
+        @PostMapping("/criar")
         public NinjaModel create(@RequestBody NinjaModel ninjaModel){
             return ninjaService.save(ninjaModel);
         }
 
         //DELETE
-        @DeleteMapping
+        @DeleteMapping("/deletar")
         public void delete(Long id){
             ninjaService.delete(id);
         }
