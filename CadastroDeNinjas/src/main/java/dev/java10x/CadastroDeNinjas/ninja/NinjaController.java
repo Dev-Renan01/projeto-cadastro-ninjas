@@ -14,7 +14,6 @@ import java.util.List;
             this.ninjaService = ninjaService;
         }
 
-
         @GetMapping
         public String boasVindas(){
             return "Olá, seja bem vindo ao meu projeto!";

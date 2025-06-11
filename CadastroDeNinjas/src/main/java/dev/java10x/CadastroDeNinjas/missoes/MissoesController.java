@@ -1,6 +1,8 @@
 package dev.java10x.CadastroDeNinjas.missoes;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,25 +14,41 @@ public class MissoesController {
     @Autowired
     private MissoesService missoesService;
 
-    @GetMapping
-    public String boasVindas(){
-        return "Seja bem vindo, escolha a sua missao!";
+    // Mensagem de boas-vindas
+    @GetMapping("/boas-vindas")
+    public String boasVindas() {
+        return "Seja bem-vindo, escolha a sua missão!";
     }
 
-    @GetMapping("/listar")
-    public List<MissoesModel> getall(@RequestBody MissoesModel missoesModel){
+    // Listar todas as missões
+    @GetMapping
+    public List<MissoesModel> listarTodas() {
         return missoesService.getAll();
     }
 
-    @PostMapping("/criar")
-    public MissoesModel create(@RequestBody MissoesModel missoesModel){
-        return missoesService.save(missoesModel);
+    // Buscar por dificuldade
+    @GetMapping("/dificuldade/{dificuldade}")
+    public List<MissoesModel> getPorDificuldade(@PathVariable String dificuldade) {
+        return missoesService.buscarPorDificuldade(dificuldade);
     }
 
-    @DeleteMapping("/deletar")
-    public void delete(Long id){
+    // Buscar por status
+    @GetMapping("/status/{status}")
+    public List<MissoesModel> getPorStatus(@PathVariable String status) {
+        return missoesService.buscarPorStatus(status);
+    }
+
+    // Criar missão
+    @PostMapping
+    public ResponseEntity<MissoesModel> criarMissao(@RequestBody MissoesModel missao) {
+        MissoesModel salva = missoesService.save(missao);
+        return new ResponseEntity<>(salva, HttpStatus.CREATED);
+    }
+
+    // Deletar missão por ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         missoesService.delete(id);
+        return ResponseEntity.noContent().build();
     }
-
-
 }

@@ -13,19 +13,25 @@ public class MissoesService {
         this.missoesRepository = missoesRepository;
     }
 
-    //LISTAR
     public List<MissoesModel> getAll() {
         return missoesRepository.findAll();
     }
 
-    //CRIAR
-    public MissoesModel save(MissoesModel missoesModel) {
-        return missoesRepository.save(missoesModel);
+    public MissoesModel save(MissoesModel missao) {
+        return missoesRepository.save(missao);
     }
 
-    //DELETE
-    public void delete(Long id){
+    public void delete(Long id) {
         missoesRepository.deleteById(id);
     }
-}
 
+    public List<MissoesModel> buscarPorDificuldade(String dificuldadeTexto) {
+        DificuldadeMissao dificuldade = DificuldadeMissao.valueOf(dificuldadeTexto.toUpperCase());
+        return missoesRepository.findByDificuldade(dificuldade);
+    }
+
+    public List<MissoesModel> buscarPorStatus(String statusTexto) {
+        StatusMissao status = StatusMissao.valueOf(statusTexto.toUpperCase());
+        return missoesRepository.findByStatus(status);
+    }
+}
