@@ -1,8 +1,9 @@
-package dev.java10x.CadastroDeNinjas.ninja;
+package dev.java10x.CadastroDeNinjas.ninja.serviceN;
 
+import dev.java10x.CadastroDeNinjas.ninja.modelN.NinjaModel;
+import dev.java10x.CadastroDeNinjas.ninja.repositoryN.NinjaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

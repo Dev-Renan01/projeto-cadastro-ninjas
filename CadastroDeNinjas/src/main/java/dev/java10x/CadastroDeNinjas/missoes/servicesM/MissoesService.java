@@ -1,5 +1,7 @@
-package dev.java10x.CadastroDeNinjas.missoes;
+package dev.java10x.CadastroDeNinjas.missoes.servicesM;
 
+import dev.java10x.CadastroDeNinjas.missoes.modelM.MissoesModel;
+import dev.java10x.CadastroDeNinjas.missoes.repositoryM.MissoesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

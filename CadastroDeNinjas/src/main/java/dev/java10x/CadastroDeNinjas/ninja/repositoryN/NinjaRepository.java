@@ -1,5 +1,6 @@
-package dev.java10x.CadastroDeNinjas.ninja;
+package dev.java10x.CadastroDeNinjas.ninja.repositoryN;
 
+import dev.java10x.CadastroDeNinjas.ninja.modelN.NinjaModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

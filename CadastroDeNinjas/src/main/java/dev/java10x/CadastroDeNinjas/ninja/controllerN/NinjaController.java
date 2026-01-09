@@ -1,5 +1,7 @@
-package dev.java10x.CadastroDeNinjas.ninja;
+package dev.java10x.CadastroDeNinjas.ninja.controllerN;
 
+ import dev.java10x.CadastroDeNinjas.ninja.modelN.NinjaModel;
+ import dev.java10x.CadastroDeNinjas.ninja.serviceN.NinjaService;
  import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
