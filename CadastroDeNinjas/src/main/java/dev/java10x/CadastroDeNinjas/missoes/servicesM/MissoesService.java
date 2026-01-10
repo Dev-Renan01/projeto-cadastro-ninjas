@@ -46,7 +46,7 @@ public class MissoesService {
         return missoesRepository.saveAndFlush(missao);
     }
 
-    public void deleteMissao(Long id){
+    public void deletarMissao(Long id){
         if(!missoesRepository.existsById(id)){
             throw new RuntimeException("Id não encontrada");
         }
