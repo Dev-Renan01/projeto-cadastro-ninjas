@@ -2,38 +2,54 @@ package dev.java10x.CadastroDeNinjas.missoes.servicesM;
 
 import dev.java10x.CadastroDeNinjas.missoes.modelM.MissoesModel;
 import dev.java10x.CadastroDeNinjas.missoes.repositoryM.MissoesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MissoesService {
 
-    private final MissoesRepository missoesRepository;
+    @Autowired
+    private MissoesRepository missoesRepository;
 
-    public MissoesService(MissoesRepository missoesRepository) {
-        this.missoesRepository = missoesRepository;
-    }
 
-    public List<MissoesModel> getAll() {
+    public List<MissoesModel> listarMissoes() {
         return missoesRepository.findAll();
     }
 
-    public MissoesModel save(MissoesModel missao) {
-        return missoesRepository.save(missao);
+    public Optional<MissoesModel> buscarPorMissoesId(Long id) {
+        return missoesRepository.findById(id);
     }
 
-    public void delete(Long id) {
+    public MissoesModel salvarMissoe(MissoesModel missoes) {
+        return missoesRepository.save(missoes);
+    }
+
+    public MissoesModel atualizarMissao(MissoesModel missao) {
+
+        // Verifica se o ID da missão foi informado
+        // Atualização sem ID não é permitida
+        if (missao.getId() == null) {
+            throw new RuntimeException("ID da missão é obrigatório para atualização");
+        }
+
+        // Verifica se existe uma missão com esse ID no banco de dados
+        // Evita criar um novo registro por engano
+        if (!missoesRepository.existsById(missao.getId())) {
+            throw new RuntimeException("Missão não encontrada");
+        }
+
+        // Salva as alterações da missão existente no banco
+        // Como o ID já existe, o JPA fará um UPDATE
+        return missoesRepository.saveAndFlush(missao);
+    }
+
+    public void deleteMissao(Long id){
+        if(!missoesRepository.existsById(id)){
+            throw new RuntimeException("Id não encontrada");
+        }
         missoesRepository.deleteById(id);
-    }
-
-    public List<MissoesModel> buscarPorDificuldade(String dificuldadeTexto) {
-        DificuldadeMissao dificuldade = DificuldadeMissao.valueOf(dificuldadeTexto.toUpperCase());
-        return missoesRepository.findByDificuldade(dificuldade);
-    }
-
-    public List<MissoesModel> buscarPorStatus(String statusTexto) {
-        StatusMissao status = StatusMissao.valueOf(statusTexto.toUpperCase());
-        return missoesRepository.findByStatus(status);
     }
 }

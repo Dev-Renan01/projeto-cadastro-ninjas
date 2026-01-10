@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_missoes")
+@Table(name = "missoes")
 public class MissoesModel {
 
     @Id
@@ -16,27 +16,12 @@ public class MissoesModel {
     private String nome;
     private String dificuldade;
     private String descricao;
-    private StatusMissao status;
-    private DificuldadeMissao dificuldadeMissao;
 
     //OneToMany - uma missão pode ter vários ninjas
     @OneToMany(mappedBy = "missoesModel")
     private List<NinjaModel> ninjas;
 
     public MissoesModel() {
-    }
-
-    public MissoesModel(Long id, String nome, String dificuldade,
-                        String descricao, StatusMissao status,
-                        DificuldadeMissao dificuldadeMissao,
-                        List<NinjaModel> ninjas) {
-        this.id = id;
-        this.nome = nome;
-        this.dificuldade = dificuldade;
-        this.descricao = descricao;
-        this.status = status;
-        this.dificuldadeMissao = dificuldadeMissao;
-        this.ninjas = ninjas;
     }
 
     public Long getId() {
@@ -69,22 +54,6 @@ public class MissoesModel {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public StatusMissao getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusMissao status) {
-        this.status = status;
-    }
-
-    public DificuldadeMissao getDificuldadeMissao() {
-        return dificuldadeMissao;
-    }
-
-    public void setDificuldadeMissao(DificuldadeMissao dificuldadeMissao) {
-        this.dificuldadeMissao = dificuldadeMissao;
     }
 
     public List<NinjaModel> getNinjas() {

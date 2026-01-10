@@ -7,8 +7,4 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MissoesRepository extends JpaRepository<MissoesModel, Long> {
-        List<MissoesModel> findByDificuldade(DificuldadeMissao dificuldadeMissao);
-
-        List<MissoesModel> findByStatus(StatusMissao statusMissao);
-}
+public interface MissoesRepository extends JpaRepository<MissoesModel, Long> {}

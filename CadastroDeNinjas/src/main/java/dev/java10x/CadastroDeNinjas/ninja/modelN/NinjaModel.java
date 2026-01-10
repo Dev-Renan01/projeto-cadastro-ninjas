@@ -3,9 +3,7 @@ package dev.java10x.CadastroDeNinjas.ninja.modelN;
 import dev.java10x.CadastroDeNinjas.missoes.modelM.MissoesModel;
 import jakarta.persistence.*;
 
-
 @Entity
-@Table(name = "tb_cadastro")
 public class NinjaModel {
 
     @Id
@@ -18,7 +16,6 @@ public class NinjaModel {
 
     //ManyToOne - um Ninja tem uma unica missão
     @ManyToOne
-    @JoinColumn(name = "missoes_id") // chave estrangeira
     private MissoesModel missoesModel;
 
     public NinjaModel(){}
