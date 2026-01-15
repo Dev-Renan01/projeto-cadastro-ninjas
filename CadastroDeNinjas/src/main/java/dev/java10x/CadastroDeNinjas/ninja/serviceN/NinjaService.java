@@ -2,31 +2,53 @@ package dev.java10x.CadastroDeNinjas.ninja.serviceN;
 
 import dev.java10x.CadastroDeNinjas.ninja.modelN.NinjaModel;
 import dev.java10x.CadastroDeNinjas.ninja.repositoryN.NinjaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NinjaService {
 
-    private final NinjaRepository ninjaRepository;
+    @Autowired
+    private NinjaRepository ninjaRepository;
 
-     public NinjaService(NinjaRepository ninjaRepository) {
-        this.ninjaRepository = ninjaRepository;
+    public List<NinjaModel> listarTodos(){
+        return ninjaRepository.findAll();
     }
 
-    //LISTAR
-     public List<NinjaModel> getAll(){
-         return ninjaRepository.findAll();
+    public Optional<NinjaModel> listarId(Long id){
+        return ninjaRepository.findById(id);
     }
 
-    //CRIAR
-    public NinjaModel save(NinjaModel ninjaModel){
-         return ninjaRepository.save(ninjaModel);
+    public NinjaModel salvar(NinjaModel ninja){
+        return ninjaRepository.save(ninja);
     }
 
-    //DELETAR
-    public void delete(Long id){
-         ninjaRepository.deleteById(id);
+    public NinjaModel atualizar(NinjaModel ninja){
+        if (ninja.getId() == null){
+            throw new RuntimeException("Informe um ID!");
+        }
+
+        if(!ninjaRepository.existsById(ninja.getId())){
+            throw new RuntimeException("Id não existente, tente outro ID");
+        }
+
+        return ninjaRepository.save(ninja);
     }
+
+    public void deletarId(Long id){
+        if (id == null){
+            throw new RuntimeException("Informe um ID!");
+        }
+
+        if(!ninjaRepository.existsById(id)){
+            throw new RuntimeException("Id não existente, tente outro ID");
+        }
+        ninjaRepository.deleteById(id);
+    }
+
+
+
 }
