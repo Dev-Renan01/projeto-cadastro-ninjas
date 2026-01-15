@@ -48,7 +48,4 @@ public class NinjaService {
         }
         ninjaRepository.deleteById(id);
     }
-
-
-
 }

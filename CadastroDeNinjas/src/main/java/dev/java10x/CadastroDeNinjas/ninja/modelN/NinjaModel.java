@@ -14,7 +14,7 @@ public class NinjaModel {
     private String email;
     private int idade;
 
-    //ManyToOne - um Ninja tem uma unica missão
+    //vários Ninjas podem ter uma única Missão
     @ManyToOne
     private MissoesModel missoesModel;
 
